@@ -1,0 +1,597 @@
+[kcrb@kushnrserveralt dev]$ sudo chmod +x samba-ad.sh modules/*
+[kcrb@kushnrserveralt dev]$ sudo ./samba-ad.sh install
+
+╔══════════════════════════════════════════════════╗
+║       Samba AD DC Auto-Deploy Toolkit            ║
+║       ALT Server 11.1 | Samba 4                  ║
+╚══════════════════════════════════════════════════╝
+
+[2026-05-04 13:19:27] [STEP]  === Full install starting... ===
+  Domain:  kcrb.local
+  Realm:   KCRB.LOCAL
+  NetBIOS: KCRB
+  FQDN:    kushnrserveralt.kcrb.local
+  IP:      192.168.31.136
+
+>>> Running: 01_bootstrap.sh
+[2026-05-04 13:19:27] [STEP]  === Bootstrap: installing packages and preparing system ===
+[2026-05-04 13:19:27] [INFO]  Backed up: /etc/resolv.conf
+[2026-05-04 13:19:27] [INFO]  Updating package index...
+Получено: 1 http://ftp.altlinux.org p11/branch/x86_64 release [4210B]
+Получено: 2 http://ftp.altlinux.org p11/branch/x86_64-i586 release [1665B]
+Получено: 3 http://ftp.altlinux.org p11/branch/noarch release [2831B]
+Получено 8706B за 0s (59,5kB/s).
+Получено: 1 http://ftp.altlinux.org p11/branch/x86_64/classic pkglist [29,2MB]
+Получено: 2 http://ftp.altlinux.org p11/branch/x86_64/classic release [137B]
+Получено: 3 http://ftp.altlinux.org p11/branch/x86_64-i586/classic pkglist [20,2MB]
+Получено: 4 http://ftp.altlinux.org p11/branch/x86_64-i586/classic release [142B]
+Получено: 5 http://ftp.altlinux.org p11/branch/noarch/classic pkglist [7795kB]
+Получено: 6 http://ftp.altlinux.org p11/branch/noarch/classic release [137B]
+Получено 57,2MB за 1m9s (827kB/s).
+Чтение списков пакетов... Завершено
+Построение дерева зависимостей... Завершено
+[2026-05-04 13:20:46] [INFO]  Installing packages (ALT Linux names)...
+Чтение списков пакетов... Завершено
+Построение дерева зависимостей... Завершено
+Последняя версия task-samba-dc уже установлена.
+Последняя версия samba уже установлена.
+Последняя версия samba-dc уже установлена.
+Последняя версия samba-client уже установлена.
+Последняя версия chrony уже установлена.
+Последняя версия dhcp-server уже установлена.
+Последняя версия rsync уже установлена.
+Последняя версия ldb-tools уже установлена.
+Последняя версия python3-module-samba уже установлена.
+Последняя версия python3-module-pip уже установлена.
+Последняя версия python3-module-setuptools уже установлена.
+Последняя версия firewalld уже установлена.
+Последняя версия bash-completion уже установлена.
+0 будет обновлено, 0 новых установлено, 0 пакетов будет удалено и 98 не будет обновлено.
+[2026-05-04 13:20:52] [INFO]  Verifying Samba/Python tooling...
+[2026-05-04 13:20:52] [INFO]  Setting hostname: kushnrserveralt.kcrb.local
+[2026-05-04 13:20:53] [INFO]  Configuring chrony...
+[2026-05-04 13:20:56] [INFO]  Forcing initial time correction with chronyc makestep...
+[2026-05-05 15:07:20] [OK]    System time corrected via chrony
+[2026-05-05 15:07:20] [INFO]  chronyc tracking:
+Reference ID    : 33FA2344 (51.250.35.68)
+Stratum         : 3
+Ref time (UTC)  : Tue May 05 10:05:09 2026
+System time     : 0.000000084 seconds fast of NTP time
+Last offset     : +0.000139835 seconds
+RMS offset      : 21397.746093750 seconds
+Frequency       : 29.521 ppm slow
+Residual freq   : +0.105 ppm
+Skew            : 2.471 ppm
+Root delay      : 0.028322127 seconds
+Root dispersion : 0.001415085 seconds
+Update interval : 65.2 seconds
+Leap status     : Normal
+[2026-05-05 15:07:21] [INFO]  chronyc sources:
+MS Name/IP address         Stratum Poll Reach LastRx Last sample
+===============================================================================
+^? 195.218.227.230               3   6    37    53   -2660m[ -2660m] +/-   69ms
+^~ 51.250.53.172                 2   6    37    51   -2660m[ -2660m] +/-   54ms
+^? 83.237.235.30                 2   6    37    52   -2660m[ -2660m] +/-   35ms
+^? 51.250.68.198                 2   6     3    53   -2660m[ -2660m] +/-   16ms
+[2026-05-05 15:07:21] [INFO]  Disabling conflicting services...
+[2026-05-05 15:07:26] [INFO]  Creating directory structure...
+[2026-05-05 15:07:26] [OK]    Bootstrap complete
+>>> Done: 01_bootstrap.sh
+
+>>> Running: 02_provision.sh
+[2026-05-05 15:07:26] [STEP]  === Provisioning Samba AD DC: KCRB.LOCAL / KCRB ===
+[2026-05-05 15:07:26] [INFO]  Backed up: /etc/samba/smb.conf
+[2026-05-05 15:07:26] [INFO]  Running samba-tool domain provision...
+WARNING: Using passwords on command line is insecure. Installing the setproctitle python module will hide these from shortly after program start.
+INFO 2026-05-05 15:07:27,285 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #2129: Looking up IPv6 addresses
+WARNING 2026-05-05 15:07:27,286 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #2136: No IPv6 address will be assigned
+INFO 2026-05-05 15:07:27,688 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #2302: Setting up share.ldb
+INFO 2026-05-05 15:07:27,720 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #2306: Setting up secrets.ldb
+INFO 2026-05-05 15:07:27,746 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #2311: Setting up the registry
+INFO 2026-05-05 15:07:27,813 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #2314: Setting up the privileges database
+INFO 2026-05-05 15:07:27,847 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #2317: Setting up idmap db
+INFO 2026-05-05 15:07:27,879 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #2324: Setting up SAM db
+INFO 2026-05-05 15:07:27,885 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #887: Setting up sam.ldb partitions and settings
+INFO 2026-05-05 15:07:27,887 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #899: Setting up sam.ldb rootDSE
+INFO 2026-05-05 15:07:27,894 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #1312: Pre-loading the Samba 4 and AD schema
+Unable to determine the DomainSID, can not enforce uniqueness constraint on local domainSIDs
+
+INFO 2026-05-05 15:07:27,933 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #1389: Adding DomainDN: DC=kcrb,DC=local
+INFO 2026-05-05 15:07:27,951 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #1421: Adding configuration container
+INFO 2026-05-05 15:07:27,967 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #1436: Setting up sam.ldb schema
+INFO 2026-05-05 15:07:30,505 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #1456: Setting up sam.ldb configuration data
+INFO 2026-05-05 15:07:30,703 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #1498: Setting up display specifiers
+INFO 2026-05-05 15:07:32,378 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #1506: Modifying display specifiers and extended rights
+INFO 2026-05-05 15:07:32,433 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #1513: Adding users container
+INFO 2026-05-05 15:07:32,438 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #1519: Modifying users container
+INFO 2026-05-05 15:07:32,440 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #1522: Adding computers container
+INFO 2026-05-05 15:07:32,443 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #1528: Modifying computers container
+INFO 2026-05-05 15:07:32,445 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #1532: Setting up sam.ldb data
+INFO 2026-05-05 15:07:32,634 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #1563: Setting up well known security principals
+INFO 2026-05-05 15:07:32,681 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #1577: Setting up sam.ldb users and groups
+INFO 2026-05-05 15:07:32,868 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #1585: Setting up self join
+Repacking database from v1 to v2 format (first record CN=Primary-Group-Token,CN=Schema,CN=Configuration,DC=kcrb,DC=local)
+Repack: re-packed 10000 records so far
+Repacking database from v1 to v2 format (first record CN=printQueue-Display,CN=816,CN=DisplaySpecifiers,CN=Configuration,DC=kcrb,DC=local)
+Repacking database from v1 to v2 format (first record CN=6bcd567e-8314-11d6-977b-00c04f613221,CN=Operations,CN=DomainUpdates,CN=System,DC=kcrb,DC=local)
+INFO 2026-05-05 15:07:34,417 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/sambadns.py #1196: Adding DNS accounts
+INFO 2026-05-05 15:07:34,449 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/sambadns.py #1230: Creating CN=MicrosoftDNS,CN=System,DC=kcrb,DC=local
+INFO 2026-05-05 15:07:34,469 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/sambadns.py #1243: Creating DomainDnsZones and ForestDnsZones partitions
+INFO 2026-05-05 15:07:34,524 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/sambadns.py #1248: Populating DomainDnsZones and ForestDnsZones partitions
+Repacking database from v1 to v2 format (first record DC=_ldap._tcp.ForestDnsZones,DC=kcrb.local,CN=MicrosoftDNS,DC=DomainDnsZones,DC=kcrb,DC=local)
+Repacking database from v1 to v2 format (first record CN=MicrosoftDNS,DC=ForestDnsZones,DC=kcrb,DC=local)
+INFO 2026-05-05 15:07:34,762 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #2017: Setting up sam.ldb rootDSE marking as synchronized
+INFO 2026-05-05 15:07:34,773 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #2022: Fixing provision GUIDs
+Temporarily overriding 'dsdb:schema update allowed' setting
+Applied Forest Update 11: 27a03717-5963-48fc-ba6f-69faa33e70ed
+Applied Forest Update 54: 134428a8-0043-48a6-bcda-63310d9ec4dd
+Applied Forest Update 79: 21ae657c-6649-43c4-bbb3-7f184fdf58c1
+Applied Forest Update 80: dca8f425-baae-47cd-b424-e3f6c76ed08b
+Applied Forest Update 81: a662b036-dbbe-4166-b4ba-21abea17f9cc
+Applied Forest Update 82: 9d17b863-18c3-497d-9bde-45ddb95fcb65
+Applied Forest Update 83: 11c39bed-4bee-45f5-b195-8da0e05b573a
+Applied Forest Update 84: 4664e973-cb20-4def-b3d5-559d6fe123e0
+Applied Forest Update 85: 2972d92d-a07a-44ac-9cb0-bf243356f345
+Applied Forest Update 86: 09a49cb3-6c54-4b83-ab20-8370838ba149
+Applied Forest Update 87: 77283e65-ce02-4dc3-8c1e-bf99b22527c2
+Applied Forest Update 88: 0afb7f53-96bd-404b-a659-89e65c269420
+Applied Forest Update 89: c7f717ef-fdbe-4b4b-8dfc-fa8b839fbcfa
+Applied Forest Update 90: 00232167-f3a4-43c6-b503-9acb7a81b01c
+Applied Forest Update 91: 73a9515b-511c-44d2-822b-444a33d3bd33
+Applied Forest Update 92: e0c60003-2ed7-4fd3-8659-7655a7e79397
+Applied Forest Update 93: ed0c8cca-80ab-4b6b-ac5a-59b1d317e11f
+Applied Forest Update 94: b6a6c19a-afc9-476b-8994-61f5b14b3f05
+Applied Forest Update 95: defc28cd-6cb6-4479-8bcb-aabfb41e9713
+Applied Forest Update 96: d6bd96d4-e66b-4a38-9c6b-e976ff58c56d
+Applied Forest Update 97: bb8efc40-3090-4fa2-8a3f-7cd1d380e695
+Applied Forest Update 98: 2d6abe1b-4326-489e-920c-76d5337d2dc5
+Applied Forest Update 99: 6b13dfb5-cecc-4fb8-b28d-0505cea24175
+Applied Forest Update 100: 92e73422-c68b-46c9-b0d5-b55f9c741410
+Applied Forest Update 101: c0ad80b4-8e84-4cc4-9163-2f84649bcc42
+Applied Forest Update 102: 992fe1d0-6591-4f24-a163-c820fcb7f308
+Applied Forest Update 103: ede85f96-7061-47bf-b11b-0c0d999595b5
+Applied Forest Update 104: ee0f3271-eb51-414a-bdac-8f9ba6397a39
+Applied Forest Update 105: 587d52e0-507e-440e-9d67-e6129f33bb68
+Applied Forest Update 106: ce24f0f6-237e-43d6-ac04-1e918ab04aac
+Applied Forest Update 107: 7f77d431-dd6a-434f-ae4d-ce82928e498f
+Applied Forest Update 108: ba14e1f6-7cd1-4739-804f-57d0ea74edf4
+Applied Forest Update 109: 156ffa2a-e07c-46fb-a5c4-fbd84a4e5cce
+Applied Forest Update 110: 7771d7dd-2231-4470-aa74-84a6f56fc3b6
+Applied Forest Update 111: 49b2ae86-839a-4ea0-81fe-9171c1b98e83
+Applied Forest Update 112: 1b1de989-57ec-4e96-b933-8279a8119da4
+Applied Forest Update 113: 281c63f0-2c9a-4cce-9256-a238c23c0db9
+Applied Forest Update 114: 4c47881a-f15a-4f6c-9f49-2742f7a11f4b
+Applied Forest Update 115: 2aea2dc6-d1d3-4f0c-9994-66c1da21de0f
+Applied Forest Update 116: ae78240c-43b9-499e-ae65-2b6e0f0e202a
+Applied Forest Update 117: 261b5bba-3438-4d5c-a3e9-7b871e5f57f0
+Applied Forest Update 118: 3fb79c05-8ea1-438c-8c7a-81f213aa61c2
+Applied Forest Update 119: 0b2be39a-d463-4c23-8290-32186759d3b1
+Applied Forest Update 120: f0842b44-bc03-46a1-a860-006e8527fccd
+Applied Forest Update 121: 93efec15-4dd9-4850-bc86-a1f2c8e2ebb9
+Applied Forest Update 122: 9e108d96-672f-40f0-b6bd-69ee1f0b7ac4
+Applied Forest Update 123: 1e269508-f862-4c4a-b01f-420d26c4ff8c
+Applied Forest Update 125: e1ab17ed-5efb-4691-ad2d-0424592c5755
+Applied Forest Update 126: 0e848bd4-7c70-48f2-b8fc-00fbaa82e360
+Applied Forest Update 127: 016f23f7-077d-41fa-a356-de7cfdb01797
+Applied Forest Update 128: 49c140db-2de3-44c2-a99a-bab2e6d2ba81
+Applied Forest Update 129: e0b11c80-62c5-47f7-ad0d-3734a71b8312
+Applied Forest Update 130: 2ada1a2d-b02f-4731-b4fe-59f955e24f71
+Applied Forest Update 131: b83818c1-01a6-4f39-91b7-a3bb581c3ae3
+Applied Forest Update 132: bbbb9db0-4009-4368-8c40-6674e980d3c3
+Applied Forest Update 133: f754861c-3692-4a7b-b2c2-d0fa28ed0b0b
+Applied Forest Update 134: d32f499f-3026-4af0-a5bd-13fe5a331bd2
+Applied Forest Update 135: 38618886-98ee-4e42-8cf1-d9a2cd9edf8b
+Applied Forest Update 136: 328092fb-16e7-4453-9ab8-7592db56e9c4
+Applied Forest Update 137: 3a1c887f-df0a-489f-b3f2-2d0409095f6e
+Applied Forest Update 138: 232e831f-f988-4444-8e3e-8a352e2fd411
+Applied Forest Update 139: ddddcf0c-bec9-4a5a-ae86-3cfe6cc6e110
+Applied Forest Update 140: a0a45aac-5550-42df-bb6a-3cc5c46b52f2
+Applied Forest Update 141: 3e7645f3-3ea5-4567-b35a-87630449c70c
+Applied Forest Update 142: e634067b-e2c4-4d79-b6e8-73c619324d5e
+Skip Domain Update 75: 5e1574f6-55df-493e-a671-aaeffca6a100
+Skip Domain Update 76: d262aae8-41f7-48ed-9f35-56bbb677573d
+Skip Domain Update 77: 82112ba0-7e4c-4a44-89d9-d46c9612bf91
+Applied Domain Update 78: c3c927a6-cc1d-47c0-966b-be8f9b63d991
+Applied Domain Update 79: 54afcfb9-637a-4251-9f47-4d50e7021211
+Applied Domain Update 80: f4728883-84dd-483c-9897-274f2ebcf11e
+Applied Domain Update 81: ff4f9d27-7157-4cb0-80a9-5d6f2b14c8ff
+Applied Domain Update 82: 83c53da7-427e-47a4-a07a-a324598b88f7
+Applied Domain Update 83: c81fc9cc-0130-4fd1-b272-634d74818133
+Applied Domain Update 84: e5f9e791-d96d-4fc9-93c9-d53e1dc439ba
+Applied Domain Update 85: e6d5fd00-385d-4e65-b02d-9da3493ed850
+Applied Domain Update 86: 3a6b3fbf-3168-4312-a10d-dd5b3393952d
+Applied Domain Update 87: 7f950403-0ab3-47f9-9730-5d7b0269f9bd
+Applied Domain Update 88: 434bb40d-dbc9-4fe7-81d4-d57229f7b080
+Applied Domain Update 89: a0c238ba-9e30-4ee6-80a6-43f731e9a5cd
+INFO 2026-05-05 15:07:36,370 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #2414: gkdi/gmsa root key added with guid 7e0e54ee-f704-5046-d536-5705bf75e058
+INFO 2026-05-05 15:07:36,372 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #2425: A Kerberos configuration suitable for Samba AD has been generated at /var/lib/samba/private/krb5.conf
+INFO 2026-05-05 15:07:36,373 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #2427: Merge the contents of this file with your system krb5.conf or replace it with this one. Do not create a symlink!
+INFO 2026-05-05 15:07:36,445 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #2086: Setting up fake yp server settings
+INFO 2026-05-05 15:07:36,547 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #492: Once the above files are installed, your Samba AD server will be ready to use
+INFO 2026-05-05 15:07:36,548 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #497: Server Role:           active directory domain controller
+INFO 2026-05-05 15:07:36,549 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #498: Hostname:              kushnrserveralt
+INFO 2026-05-05 15:07:36,549 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #499: NetBIOS Domain:        KCRB
+INFO 2026-05-05 15:07:36,549 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #500: DNS Domain:            kcrb.local
+INFO 2026-05-05 15:07:36,550 pid:6166 /usr/lib64/samba-dc/python3.12/samba/provision/__init__.py #501: DOMAIN SID:            S-1-5-21-393443177-2346791554-3728301918
+[2026-05-05 15:07:36] [INFO]  Setting DNS forwarders...
+[2026-05-05 15:07:41] [INFO]  Ensuring reverse DNS zone...
+[2026-05-05 15:07:43] [INFO]  PTR record created: 192.168.31.136 -> kushnrserveralt.kcrb.local
+[2026-05-05 15:07:43] [INFO]  Verifying provision...
+[2026-05-05 15:07:43] [INFO]  --- Domain info ---
+Forest           : kcrb.local
+Domain           : kcrb.local
+Netbios domain   : KCRB
+DC name          : kushnrserveralt.kcrb.local
+DC netbios name  : KUSHNRSERVERALT
+Server site      : Default-First-Site-Name
+Client site      : Default-First-Site-Name
+[2026-05-05 15:07:43] [INFO]  --- DNS query (kcrb.local) ---
+WARNING: Using passwords on command line is insecure. Installing the setproctitle python module will hide these from shortly after program start.
+  Name=, Records=3, Children=0
+    SOA: serial=1, refresh=900, retry=600, expire=86400, minttl=3600, ns=kushnrserveralt.kcrb.local., email=hostmaster.kcrb.local. (flags=600000f0, serial=1, ttl=3600)
+    NS: kushnrserveralt.kcrb.local. (flags=600000f0, serial=1, ttl=900)
+    A: 192.168.31.136 (flags=600000f0, serial=1, ttl=900)
+  Name=_msdcs, Records=0, Children=0
+  Name=_sites, Records=0, Children=1
+  Name=_tcp, Records=0, Children=4
+  Name=_udp, Records=0, Children=2
+  Name=DomainDnsZones, Records=0, Children=2
+  Name=ForestDnsZones, Records=0, Children=2
+  Name=kushnrserveralt, Records=1, Children=0
+    A: 192.168.31.136 (flags=f0, serial=1, ttl=900)
+[2026-05-05 15:07:44] [INFO]  --- DNS zones ---
+WARNING: Using passwords on command line is insecure. Installing the setproctitle python module will hide these from shortly after program start.
+  3 zone(s) found
+
+  pszZoneName                 : kcrb.local
+  Flags                       : DNS_RPC_ZONE_DSINTEGRATED DNS_RPC_ZONE_UPDATE_SECURE
+  ZoneType                    : DNS_ZONE_TYPE_PRIMARY
+  Version                     : 50
+  dwDpFlags                   : DNS_DP_AUTOCREATED DNS_DP_DOMAIN_DEFAULT DNS_DP_ENLISTED
+  pszDpFqdn                   : DomainDnsZones.kcrb.local
+
+  pszZoneName                 : 31.168.192.in-addr.arpa
+  Flags                       : DNS_RPC_ZONE_DSINTEGRATED DNS_RPC_ZONE_UPDATE_SECURE
+  ZoneType                    : DNS_ZONE_TYPE_PRIMARY
+  Version                     : 50
+  dwDpFlags                   : DNS_DP_AUTOCREATED DNS_DP_DOMAIN_DEFAULT DNS_DP_ENLISTED
+  pszDpFqdn                   : DomainDnsZones.kcrb.local
+
+  pszZoneName                 : _msdcs.kcrb.local
+  Flags                       : DNS_RPC_ZONE_DSINTEGRATED DNS_RPC_ZONE_UPDATE_SECURE
+  ZoneType                    : DNS_ZONE_TYPE_PRIMARY
+  Version                     : 50
+  dwDpFlags                   : DNS_DP_AUTOCREATED DNS_DP_FOREST_DEFAULT DNS_DP_ENLISTED
+  pszDpFqdn                   : ForestDnsZones.kcrb.local
+[2026-05-05 15:07:44] [INFO]  Reverse DNS: 192.168.31.136 -> kushnrserveralt.kcrb.local.
+[2026-05-05 15:07:44] [OK]    Provision complete: KCRB.LOCAL
+>>> Done: 02_provision.sh
+
+>>> Running: 03_shares.sh
+[2026-05-05 15:07:44] [STEP]  === Configuring Samba file shares ===
+[2026-05-05 15:07:44] [INFO]  Backed up: /etc/samba/smb.conf
+[2026-05-05 15:07:44] [INFO]  Shares written to /etc/samba/smb.conf
+[2026-05-05 15:07:45] [INFO]  Snapshot created: /var/lib/samba/snapshots/public/@GMT-2026.05.05-10.07.45
+[2026-05-05 15:07:45] [INFO]  Snapshot created: /var/lib/samba/snapshots/departments/@GMT-2026.05.05-10.07.45
+[2026-05-05 15:07:45] [INFO]  Snapshot created: /var/lib/samba/snapshots/users/@GMT-2026.05.05-10.07.45
+[2026-05-05 15:07:45] [INFO]  Running testparm...
+[redirected]
+        browseable = No
+        create mask = 0666
+        directory mask = 0777
+        inherit acls = Yes
+        map acl inherit = Yes
+        path = /var/lib/samba/redirected
+        read only = No
+        vfs objects = acl_xattr
+
+
+[dfs]
+        create mask = 0644
+        msdfs root = Yes
+        path = /var/lib/samba/shares/dfs
+
+
+[apps]
+        create mask = 0644
+        path = /var/lib/samba/apps
+[2026-05-05 15:08:30] [OK]    Shares configured: public departments users profiles redirected dfs apps
+>>> Done: 03_shares.sh
+
+>>> Running: 04_dhcp.sh
+[2026-05-05 15:08:30] [STEP]  === Configuring DHCP for kcrb.local ===
+[2026-05-05 15:08:30] [INFO]  DHCP is DISABLED (service stays off). Set DHCP_ENABLED=yes in config.cfg to enable.
+[2026-05-05 15:08:31] [OK]    DHCP configured (enabled=no)
+>>> Done: 04_dhcp.sh
+
+>>> Running: 05_users.sh
+[2026-05-05 15:08:31] [STEP]  === Configuring users and groups ===
+[2026-05-05 15:08:31] [INFO]  Using CSV: /home/kcrb/dev/templates/users_auto.csv
+[2026-05-05 15:08:32] [INFO]  Creating group: grp_users — Обычные пользователи
+Added group grp_users
+[2026-05-05 15:08:33] [INFO]  Creating group: grp_admins — Пользователи с административными правами
+Added group grp_admins
+[2026-05-05 15:08:34] [INFO]  Creating group: grp_services — Сервисные учетные записи
+Added group grp_services
+[2026-05-05 15:08:35] [INFO]  CSV format: users_auto.csv
+[2026-05-05 15:08:36] [INFO]  Creating user: petrov_ai
+[2026-05-05 15:08:37] [INFO]    Setting displayName to 'Петров Алексей Иванович' for petrov_ai
+[2026-05-05 15:08:38] [INFO]    Setting LDAP attributes for petrov_ai (DN: CN=petrov_ai,CN=Users,DC=kcrb,DC=local)...
+[2026-05-05 15:08:38] [INFO]    LDAP attributes set successfully for petrov_ai
+[2026-05-05 15:08:39] [INFO]    Setting NT ACL on /var/lib/samba/profiles/petrov_ai (owner=S-1-5-21-393443177-2346791554-3728301918-1106, share=[profiles])
+[2026-05-05 15:08:40] [INFO]    Setting NT ACL on /var/lib/samba/redirected/petrov_ai (owner=S-1-5-21-393443177-2346791554-3728301918-1106, share=[redirected])
+[2026-05-05 15:08:41] [INFO]    Setting NT ACL on /var/lib/samba/shares/users/petrov_ai (owner=S-1-5-21-393443177-2346791554-3728301918-1106, share=[users])
+[2026-05-05 15:08:42] [INFO]  Group exists: grp_users
+[2026-05-05 15:08:44] [INFO]  Creating user: sidorova_ek
+[2026-05-05 15:08:45] [INFO]    Setting displayName to 'Сидорова Елена Константиновна' for sidorova_ek
+[2026-05-05 15:08:46] [INFO]    Setting LDAP attributes for sidorova_ek (DN: CN=sidorova_ek,CN=Users,DC=kcrb,DC=local)...
+[2026-05-05 15:08:46] [INFO]    LDAP attributes set successfully for sidorova_ek
+[2026-05-05 15:08:47] [INFO]    Setting NT ACL on /var/lib/samba/profiles/sidorova_ek (owner=S-1-5-21-393443177-2346791554-3728301918-1107, share=[profiles])
+[2026-05-05 15:08:48] [INFO]    Setting NT ACL on /var/lib/samba/redirected/sidorova_ek (owner=S-1-5-21-393443177-2346791554-3728301918-1107, share=[redirected])
+[2026-05-05 15:08:49] [INFO]    Setting NT ACL on /var/lib/samba/shares/users/sidorova_ek (owner=S-1-5-21-393443177-2346791554-3728301918-1107, share=[users])
+[2026-05-05 15:08:50] [INFO]  Group exists: grp_users
+[2026-05-05 15:08:52] [INFO]  Creating user: volkov_ds
+[2026-05-05 15:08:53] [INFO]    Setting displayName to 'Волков Дмитрий Сергеевич' for volkov_ds
+[2026-05-05 15:08:54] [INFO]    Setting LDAP attributes for volkov_ds (DN: CN=volkov_ds,CN=Users,DC=kcrb,DC=local)...
+[2026-05-05 15:08:54] [INFO]    LDAP attributes set successfully for volkov_ds
+[2026-05-05 15:08:55] [INFO]    Setting NT ACL on /var/lib/samba/profiles/volkov_ds (owner=S-1-5-21-393443177-2346791554-3728301918-1108, share=[profiles])
+[2026-05-05 15:08:56] [INFO]    Setting NT ACL on /var/lib/samba/redirected/volkov_ds (owner=S-1-5-21-393443177-2346791554-3728301918-1108, share=[redirected])
+[2026-05-05 15:08:57] [INFO]    Setting NT ACL on /var/lib/samba/shares/users/volkov_ds (owner=S-1-5-21-393443177-2346791554-3728301918-1108, share=[users])
+[2026-05-05 15:08:58] [INFO]  Group exists: grp_users
+[2026-05-05 15:08:59] [INFO]  Users processed: 3 (created: 3, updated: 0)
+[2026-05-05 15:08:59] [INFO]  Domain users:
+Administrator
+Guest
+krbtgt
+petrov_ai
+sidorova_ek
+volkov_ds
+[2026-05-05 15:08:59] [INFO]  Groups:
+Account Operators
+Administrators
+Allowed RODC Password Replication Group
+Backup Operators
+Certificate Service DCOM Access
+Cert Publishers
+Cryptographic Operators
+Denied RODC Password Replication Group
+Distributed COM Users
+DnsAdmins
+DnsUpdateProxy
+Domain Admins
+Domain Computers
+Domain Controllers
+Domain Guests
+Domain Users
+Enterprise Admins
+Enterprise Read-only Domain Controllers
+Event Log Readers
+Group Policy Creator Owners
+[2026-05-05 15:09:00] [OK]    Users and groups configured
+>>> Done: 05_users.sh
+
+>>> Running: 06_gpo.sh
+[2026-05-05 15:09:00] [STEP]  === Configuring Group Policy Objects ===
+[OK] USB GPO: USB Storage Restriction -> {18351F58-0970-4774-B74C-E04E2F8109DA}
+[OK] Audit GPO: Audit Logon Logoff -> {CF77C75A-3452-4473-8A14-821A297A4591}
+[OK] Drive Maps GPO: Shared Folders Drive Maps -> {2831A11F-9431-4943-A5BA-E50C644F0D75}
+[OK] Folder Redirection GPO: Folder Redirection Policy -> {DD3BD96C-E39A-4BC5-B036-2FB39C9EA079}
+[OK] Apps Install GPO: Apps Auto Install -> {16EF83BE-91AA-43F8-92B3-5F509572C7D8}, linked to domain root and OU=Workstations,DC=kcrb,DC=local
+[2026-05-05 15:09:03] [INFO]  Resetting SYSVOL ACLs after GPO changes...
+[2026-05-05 15:09:06] [INFO]  SYSVOL ACLs synchronized
+[2026-05-05 15:09:06] [OK]    GPO configuration complete
+>>> Done: 06_gpo.sh
+
+>>> Running: 07_dfs.sh
+[2026-05-05 15:09:06] [STEP]  === Configuring DFS namespace ===
+[2026-05-05 15:09:06] [INFO]  Backed up: /etc/samba/smb.conf
+[2026-05-05 15:09:06] [INFO]  DFS link: public -> public
+[2026-05-05 15:09:06] [INFO]  DFS link: departments -> departments
+[2026-05-05 15:09:06] [INFO]  DFS link: users -> users
+[2026-05-05 15:09:06] [INFO]  DFS link: profiles -> profiles
+[2026-05-05 15:09:08] [INFO]  DFS links:
+итого 8
+drwxr-xr-x  2 root root 4096 мая  5 15:09 .
+drwxr-xr-x 17 root root 4096 мая  5 15:07 ..
+lrwxrwxrwx  1 root root   44 мая  5 15:09 departments -> msdfs:kushnrserveralt.kcrb.local\departments
+lrwxrwxrwx  1 root root   41 мая  5 15:09 profiles -> msdfs:kushnrserveralt.kcrb.local\profiles
+lrwxrwxrwx  1 root root   39 мая  5 15:09 public -> msdfs:kushnrserveralt.kcrb.local\public
+lrwxrwxrwx  1 root root   38 мая  5 15:09 users -> msdfs:kushnrserveralt.kcrb.local\users
+[2026-05-05 15:09:08] [OK]    DFS configured
+>>> Done: 07_dfs.sh
+
+>>> Running: 08_security.sh
+[2026-05-05 15:09:08] [STEP]  === Configuring security policies ===
+[2026-05-05 15:09:08] [INFO]  Setting password policy...
+[2026-05-05 15:09:11] [INFO]  Password policy applied:
+Password information for domain 'DC=kcrb,DC=local'
+
+Password complexity: on
+Store plaintext passwords: off
+Password history length: 24
+Minimum password length: 8
+Minimum password age (days): 1
+Maximum password age (days): 42
+Account lockout duration (mins): 30
+Account lockout threshold (attempts): 3
+Reset account lockout after (mins): 30
+[2026-05-05 15:09:12] [INFO]  Auto-creating common share directory (needed by Drive Maps GPO)...
+[2026-05-05 15:09:12] [INFO]  Common share directory created: /var/lib/samba/shares/common
+[2026-05-05 15:09:12] [INFO]  Configuring ACLs for common share...
+[2026-05-05 15:09:12] [INFO]  ACL applied to common share root
+[2026-05-05 15:09:12] [INFO]  ACL applied to папка1 (rwx for users + admins)
+[2026-05-05 15:09:12] [INFO]  ACL applied to папка2 (rx for users, rwx for admins)
+[2026-05-05 15:09:12] [INFO]  Added [common] share to smb.conf
+[2026-05-05 15:09:12] [INFO]  ACL for common share:
+# file: var/lib/samba/shares/common
+# owner: root
+# group: root
+user::rwx
+group::---
+group:3000018:r-x
+group:3000019:rwx
+mask::rwx
+other::---
+default:user::rwx
+default:group::---
+default:group:3000018:r-x
+default:group:3000019:rwx
+default:mask::rwx
+default:other::---
+
+[2026-05-05 15:09:12] [INFO]  Hardening: disabling SMBv1...
+[2026-05-05 15:09:12] [INFO]  Backed up: /etc/samba/smb.conf
+[2026-05-05 15:09:13] [OK]    Security hardening complete
+>>> Done: 08_security.sh
+
+>>> Running: 09_firewall.sh
+[2026-05-05 15:09:13] [STEP]  === Configuring firewall ===
+[2026-05-05 15:09:13] [INFO]  Using firewalld...
+success
+success
+[2026-05-05 15:09:17] [INFO]    Port: 53/tcp
+success
+[2026-05-05 15:09:18] [INFO]    Port: 53/udp
+success
+[2026-05-05 15:09:18] [INFO]    Port: 123/udp
+success
+[2026-05-05 15:09:19] [INFO]    Port: 88/tcp
+success
+[2026-05-05 15:09:19] [INFO]    Port: 88/udp
+success
+[2026-05-05 15:09:20] [INFO]    Port: 135/tcp
+success
+[2026-05-05 15:09:20] [INFO]    Port: 139/tcp
+success
+[2026-05-05 15:09:20] [INFO]    Port: 139/udp
+success
+[2026-05-05 15:09:21] [INFO]    Port: 389/tcp
+success
+[2026-05-05 15:09:21] [INFO]    Port: 389/udp
+success
+[2026-05-05 15:09:22] [INFO]    Port: 445/tcp
+success
+[2026-05-05 15:09:22] [INFO]    Port: 445/udp
+success
+[2026-05-05 15:09:22] [INFO]    Port: 464/tcp
+success
+[2026-05-05 15:09:23] [INFO]    Port: 464/udp
+success
+[2026-05-05 15:09:23] [INFO]    Port: 636/tcp
+success
+[2026-05-05 15:09:24] [INFO]    Port: 3268/tcp
+success
+[2026-05-05 15:09:24] [INFO]    Port: 3269/tcp
+success
+[2026-05-05 15:09:24] [INFO]    Port: 49152-49200/tcp
+success
+success
+success
+success
+success
+[2026-05-05 15:09:27] [INFO]  Firewall rules:
+public (default, active)
+  target: default
+  ingress-priority: 0
+  egress-priority: 0
+  icmp-block-inversion: no
+  interfaces: enp0s3
+  sources:
+  services: dhcpv6-client kerberos rpc-bind samba samba-ad-dc ssh
+  ports:
+  protocols:
+  forward: yes
+  masquerade: no
+  forward-ports:
+  source-ports:
+  icmp-blocks:
+  rich rules:
+[2026-05-05 15:09:27] [OK]    Firewall configured
+>>> Done: 09_firewall.sh
+
+>>> Running: 12_fix_ssl.sh
+[2026-05-05 15:09:27] [STEP]  === Configuring TLS for LDAPS (port 636) ===
+[2026-05-05 15:09:27] [INFO]  TLS certificate already exists at /var/lib/samba/private/tls/cert.pem
+[2026-05-05 15:09:27] [INFO]    Subject: subject=O=Samba Administration, OU=Samba - temporary autogenerated HOST certificate, CN=KUSHNRSERVERALT.kcrb.local
+[2026-05-05 15:09:27] [INFO]    Expires: Apr  4 10:07:38 2028 GMT
+[2026-05-05 15:09:27] [INFO]  To regenerate: rm -rf /var/lib/samba/private/tls and re-run this module
+[2026-05-05 15:09:27] [INFO]  Configuring TLS in smb.conf...
+[2026-05-05 15:09:27] [INFO]  Backed up: /etc/samba/smb.conf
+TLS settings added to [global] section
+[2026-05-05 15:09:27] [INFO]  Verifying smb.conf...
+        path = /var/lib/samba/shares/common
+        read only = No
+        vfs objects = acl_xattr shadow_copy2
+        shadow:format = @GMT-%Y.%m.%d-%H.%M.%S
+        shadow:snapdir = /var/lib/samba/snapshots/common
+[2026-05-05 15:09:27] [INFO]  Restarting Samba service...
+[2026-05-05 15:09:29] [OK]    Port 636 is now listening (LDAPS active)
+[2026-05-05 15:09:29] [INFO]  Testing LDAPS connection...
+[2026-05-05 15:09:29] [OK]    LDAPS connection verified
+[2026-05-05 15:09:29] [OK]    TLS/LDAPS configuration complete
+>>> Done: 12_fix_ssl.sh
+
+═══════════════════════════════════════════════════
+  INSTALL COMPLETE
+═══════════════════════════════════════════════════
+
+  Domain:  kcrb.local
+  Server:  kushnrserveralt.kcrb.local (192.168.31.136)
+  Admin:   Administrator
+
+  Verify:  samba-tool domain info kushnrserveralt.kcrb.local
+  Users:   samba-tool user list
+  Shares:  smbclient -L kushnrserveralt.kcrb.local -U Administrator
+  GPOs:    ./samba-ad.sh gpo list
+  Validate: ./samba-ad.sh titration --report
+[kcrb@kushnrserveralt dev]$
+[kcrb@kushnrserveralt dev]$ date
+Вт 05 мая 2026 15:09:38 +05
+[kcrb@kushnrserveralt dev]$ sudo systemctl c
+cancel       cat          condreload   condrestart  condstop
+[kcrb@kushnrserveralt dev]$ sudo systemctl status chronychronyc -a makestep
+[kcrb@kushnrserveralt dev]$ chronyc -a makestep
+501 Not authorised
+[kcrb@kushnrserveralt dev]$ chronyc -a makestep
+501 Not authorised
+[kcrb@kushnrserveralt dev]$ chronyc tracking
+Reference ID    : 33FA44C6 (51.250.68.198)
+Stratum         : 3
+Ref time (UTC)  : Thu May 07 06:30:41 2026
+System time     : 159595.609375000 seconds slow of NTP time
+Last offset     : +0.000053291 seconds
+RMS offset      : 44066.550781250 seconds
+Frequency       : 28.361 ppm slow
+Residual freq   : +0.062 ppm
+Skew            : 5.321 ppm
+Root delay      : 0.032165289 seconds
+Root dispersion : 0.001069096 seconds
+Update interval : 64.6 seconds
+Leap status     : Normal
+[kcrb@kushnrserveralt dev]$ chronyc sources
+MS Name/IP address         Stratum Poll Reach LastRx Last sample
+===============================================================================
+^- 195.218.227.230               3   6   377    34   -555us[ -502us] +/-   71ms
+^- mail.rashnikov.name           2   6   377    32  +4751us[+4751us] +/-   58ms
+^+ 83.237.235.30                 2   6   377    32   +361us[ +361us] +/-   35ms
+^* 51.250.68.198                 2   6    77    32   +879us[ +932us] +/-   17ms
+[kcrb@kushnrserveralt dev]$ chronyc -a makestep
+501 Not authorised
+[kcrb@kushnrserveralt dev]$ вфеу
+-bash: вфеу: команда не найдена
+[kcrb@kushnrserveralt dev]$ date
+Вт 05 мая 2026 15:11:30 +05
+[kcrb@kushnrserveralt dev]$
+[kcrb@kushnrserveralt dev]$ sudo chronyc makestep
+200 OK
+[kcrb@kushnrserveralt dev]$ chronyc -a makestep
+501 Not authorised
+[kcrb@kushnrserveralt dev]$ daye
+-bash: daye: команда не найдена
+[kcrb@kushnrserveralt dev]$ date
+Чт 07 мая 2026 11:31:55 +05
+[kcrb@kushnrserveralt dev]$ sudo chronyc -a makestep
+200 OK
+[kcrb@kushnrserveralt dev]$ date
+Чт 07 мая 2026 11:32:16 +05
+[kcrb@kushnrserveralt dev]$

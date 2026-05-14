@@ -1,0 +1,4 @@
+SamAccountName,DisplayName,Password,Groups,NeverExpires,ProfilePath,HomeDirectory,HomeDrive,RedirectFolders
+petrov_ai_2,Петров Алексей Иванович,P@$$w0rd,grp_users,false,\\kushnrserveralt.kcrb.local\profiles\petrov_ai,\\kushnrserveralt.kcrb.local\users\petrov_ai,H:,"Desktop;Documents;Downloads;Music;Pictures;Videos;Public;Templates"
+sidorova_ek_2,Сидорова Елена Константиновна,P@$$w0rd,grp_users,false,\\kushnrserveralt.kcrb.local\profiles\sidorova_ek,\\kushnrserveralt.kcrb.local\users\sidorova_ek,H:,"Desktop;Documents;Downloads;Music;Pictures;Videos;Public;Templates"
+volkov_ds_2,Волков Дмитрий Сергеевич,P@$$w0rd,grp_users,false,\\kushnrserveralt.kcrb.local\profiles\volkov_ds,\\kushnrserveralt.kcrb.local\users\volkov_ds,H:,"Desktop;Documents;Downloads;Music;Pictures;Videos;Public;Templates"
