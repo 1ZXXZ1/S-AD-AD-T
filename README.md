@@ -22,7 +22,7 @@
 ## Быстрый старт
 
 ```bash
-# 1. Скопировать файлы на сервер
+# 1. 
 git clone https://github.com/1ZXXZ1/S-AD-AD-T.git
 cd S-AD-AD-T
 
