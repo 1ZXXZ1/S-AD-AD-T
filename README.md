@@ -24,6 +24,7 @@
 ```bash
 # 1. Скопировать файлы на сервер
 git clone https://github.com/1ZXXZ1/S-AD-AD-T.git
+cd S-AD-AD-T
 
 # 2. Отредактировать конфигурацию
 nano samba-ad.cfg
