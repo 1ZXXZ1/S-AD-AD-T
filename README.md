@@ -23,7 +23,7 @@
 
 ```bash
 # 1. Скопировать файлы на сервер
-scp samba-ad.sh samba-ad.cfg root@server:/opt/samba-ad/
+git clone https://github.com/1ZXXZ1/S-AD-AD-T.git
 
 # 2. Отредактировать конфигурацию
 nano samba-ad.cfg
